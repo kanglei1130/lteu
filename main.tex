@@ -1,0 +1,136 @@
+%\documentclass[sigconf, anonymous]{acmart}
+\documentclass{sig-alternate-10pt}
+
+
+\usepackage{booktabs} % For formal tables
+\usepackage{balance} % For balanced columns on the last page
+
+\usepackage{enumitem}
+\usepackage{bbding}
+\usepackage{epstopdf}
+\newcommand{\nop}[1]{}
+
+\usepackage{hyperref}
+
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{amsmath}
+
+% Load basic packages
+%\usepackage{balance}  % to better equalize the last page
+\usepackage{graphics} % for EPS, load graphicx instead
+%\usepackage{times}    % comment if you want LaTeX's default font
+\usepackage{url}      % llt: nicely formatted URLs
+
+\usepackage{algorithmicx}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\algnewcommand\algorithmicinput{\textbf{Input:}}
+\algnewcommand\Input{\item[\algorithmicinput]}
+\algnewcommand\algorithmicoutput{\textbf{Output:}}
+\algnewcommand\Output{\item[\algorithmicoutput]}
+
+\let\oldReturn\Return
+\renewcommand{\Return}{\State\oldReturn}
+% llt: Define a global style for URLs, rather that the default one
+
+
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{authblk}
+
+
+% Make sure hyperref comes last of your loaded packages, 
+% to give it a fighting chance of not being over-written, 
+% since its job is to redefine many LaTeX commands.
+%\usepackage[pdftex]{hyperref}
+
+% End of preamble. Here it comes the document.
+\begin{document}
+
+
+\title{Understanding the Impact of LTE-U Interference on Wi-Fi Networks}
+
+
+\author[1]{Lei Kang}
+\author[2]{Bozidar Radunovic}
+\author[2]{Jiansong Zhang}
+\author[2]{Victor Bahl}
+\author[2]{Thomas Karagiannis}
+\author[2]{Kun Tan}
+\author[2]{Yongguang Zhang}
+\author[1]{Suman Banerjee}
+\affil[1]{Department of Computer Sciences, University of Wisconsin-Madison}
+\affil[2]{Microsoft Research}
+\affil[1]{\textit {\{lkang, suman\}@cs.wisc.edu}}
+\affil[2]{\textit {\{bozidar, jiazhang, bahl, thomas.karagiannis, kuntan, ygz\}@microsoft.com}}
+
+
+\maketitle
+
+
+
+\begin{abstract}
+
+\input{./doc/abstract.tex}
+
+
+\end{abstract}
+
+\section{Introduction}
+
+\input{./doc/introduction.tex}
+
+\section{LTE-U Primer}
+
+\input{./doc/background.tex}
+
+\section{Open LTE-U Platform}
+
+\input{./doc/platform.tex}
+
+
+\section{The Impact of Duty Cycling}
+
+\input{./doc/impactonwifi.tex}
+
+
+\section{The Impact of CSAT Algorithm}
+\label{sec:csat}
+\input{./doc/csatnotgood.tex}
+
+
+\section{Solution}
+
+\input{./doc/solution.tex}
+
+
+
+\section{Evaluation}
+\label{sec:eval}
+\input{./doc/evaluation.tex}
+
+
+\section{Related Work}
+
+\input{./doc/relatedwork.tex}
+
+
+\section{Conclusion}
+
+\input{./doc/conclusion.tex}
+
+
+
+\clearpage
+
+\newpage
+
+
+\bibliography{main}
+\bibliographystyle{unsrt}
+
+
+
+\end{document} 

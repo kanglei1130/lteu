@@ -1,0 +1,96 @@
+Recent dramatic increase in mobile traffic has put the existing wireless and cellular networks under strain. 
+Cellular vendors and operators are trying to leverage unlicensed bands to mitigate spectrum scarcity.
+For example, Verizon has announced plans to deploy one such technology called LTE-U (LTE Unlicensed) in the United States.
+LTE-U is based on the LTE standard and will aggregate both licensed spectrum and unlicensed spectrum for LTE traffic.
+The signalling, control channel, uplink, and portion of downlink will use the licensed band as usual, but the bulk of downlink traffic will be transmitted over the 5GHz unlicensed bands.  
+
+Today, the primary use of 5GHz unlicensed band is Wi-Fi.
+Wi-Fi uses a medium-sharing mechanism known as listen-before-talk (LBT), where nodes sense and wait for free medium before each transmission.
+However, LTE-U operates on a predetermined transmission schedule (ON-OFF duty cycle) without per-transmission LBT.
+The lack of LBT will no doubt lead to collisions with ongoing Wi-Fi transmissions. 
+LTE-U relies on Wi-Fi's loss recovery mechanisms through retransmission and Wi-Fi's LBT mechanism to avoid transmissions during LTE-U's ON periods.
+Further, LTE-U's medium sharing strategy is unilateral.
+To offer fair sharing, LTE-U reads the medium when it is not transmitting and adjusts its duty cycle based on a medium utilization (MU) estimation.
+The basic idea is that, if medium utilization is low, Wi-Fi load must be small and LTE-U can increase its share of medium use by increasing duty cycle, and vice versa. 
+
+The coexistence between Wi-Fi and LTE-U is an academically interesting problem with severe practical implications.
+Fundamentally, this is a question about whether a CSMA-type protocol can effectively coexist with a TDMA protocol without LBT.
+More specifically, it is also a question of whether duty cycle adaptation based on inferred medium utilization values can replace per-packet LBT and still yield to a stable and fair sharing of medium.
+Answering these questions is fundamental to our understanding of the deep implications of running LTE-U on the same channel as Wi-Fi.
+
+This problem also has severe practical implications because LTE-U is now real and imminent, not just an academic exercise.
+LTE-U specification V1.3~\cite{lteuforum_lteu} has been approved and published by the industrial LTE-U Forum in October 2015.
+It has been included in the newest generation of Qualcomm cellular chipsets (Snapdragon X12) and their latest small cell reference designs (FSM9955)~\cite{x12}. 
+Using this chipset, Samsung's next flagship phone, Galaxy S7, is now ``LTE-U capable''~\cite{s7}.
+Samsung and SpiderCloud Wireless have started marketing LTE-U small cell products.
+Verizon has announced plans for a large-scale roll-out in the United States, pending FCC approvals. 
+Several interested parties are planning real-world trials in an effort to persuade FCC certification.
+The potential fallout on tens of millions of 5GHz Wi-Fi devices will be huge, 
+if coexistence effects are not properly understood before mass scale deployment. 
+
+Duty-cycle adaptation algorithm is central for LTE and Wi-Fi coexistence, yet there is only a single algorithm, CSAT~\cite{lteuforum_csat}, proposed for LTE-U to derive a fair medium share.
+Surprisingly, CSAT has so far been evaluated only in a very specific, dense topology where all nodes sense each other, and with a synthetic workloads~\cite{qualcommpresentation}. In this paper we show that CSAT doesn't work well in a wide range of real-world situations, including an omnipresent hidden-terminal topology. 
+
+To alleviate these problems we propose a novel duty-cycle adaptation algorithm for LTE-U called {\em reactive adaptation}. The key observation is that a medium utilization observed by a single node in a busy network does not have to be high, as we show in Section~\ref{sec:csat}. Instead, we base our duty cycle adaptation on a relative change of the medium utilization observed as a reaction to changes in the duty cycle. 
+
+In order to verify our findings, we first built an open source LTE-U prototype platform~\cite{OpenLTEU} and a reference implementation of the coexistence algorithms, including our own reactive adaptation algorithm. 
+Then, we use the platform to run a series of LTE-U coexistence tests on real-world Wi-Fi deployments. 
+We show that with the default LTE-U implementation, Wi-Fi almost never gets its fair share, in contrast to previous studies~\cite{qualcommpresentation} that focused on small lab deployments. 
+We also show that previously suggested remedies~\cite{google, cablelabs} -- improved rate adaptation and preamble sensing -- only slightly improve Wi-Fi's performance. 
+We further show that in most cases reactive adaptation alleviates the coexistence issues. 
+
+%However, we also observe that in a few cases LTE-U exhibits a {\em fundamental efficiency problem} that we discuss in Section~\ref{sec:ineff}.
+%Without LBT, LTE-U transmissions can cause Wi-Fi performance to drop by as much as 30\%, which we show to be avoidable if Wi-Fi sensing were in place.
+%This avoidable inefficiency proves that LBT should be the preferred way for any wireless technology to coexist with CSMA-type protocols.
+
+
+In summary, this paper makes the following contributions:
+\begin{itemize}
+\item We developed an open LTE-U test platform~\cite{OpenLTEU} and conduct systematic study for coexistence between LTE-U and Wi-Fi. 
+\item We analyze one of the critical coexistence issues of duty cycle adaptation and its impact on Wi-Fi performance. We show deficiencies of the currently proposed mechanism and we present a novel algorithm that significantly improves performance in many cases. 
+\item We further show that in some cases LTE-U is fundamentally less efficient in spectrum use due to the lack of per-transmission LBT.  
+\item We verify our findings in both controlled environment and in the wild real world.
+\end{itemize} 
+Wireless coexistence in unlicensed spectrum has always been an important problem.
+However, it has now become critical with the advent of new technologies that can potentially threaten the survival of one of the most successful wireless technologies so far -- Wi-Fi. 
+%We hope that our study is one of the first step towards understanding the notion of fairness and building a propoper coexistence framework between CSMA and TDMA-based technologies in valuable unlicensed spectrum. 
+
+%In next section we discuss the basics of LTE-U and we introduce the coexistence problem. In Section~\ref{sec:csat} we explain CSAT, show its inefficiencies, and present our reactive adaptation algorithm. In Section~\ref{sec:ineff} we discuss the remaining fundamental coexistence issues due to lack of sensing. In Section~\ref{sec:eval} we present our real-world coexistence evaluation, followed by related work, discussions and conclusions.
+
+
+
+
+%% This new MAC raises an interesting research question:
+%% does it (duty-cycling with CSAT) coexist fairly with CSMA?
+
+%% We developed a platform for experimental study.
+
+%% We studied proposed CSAT algorithm.
+%% We point out coexistence issues that should be addressed
+%% (1) Accurate Wi-Fi load estimation,
+%% (2) Fair share estimation.
+%% We provide solutions for these issues.
+
+%% We also study coexistence issues that were raised before 
+%% (1) lacking listen-before-talk,
+%% (2) sensitivity between different PHY.
+%% We found these issues are addressable with straightforward solutions.
+
+%% We validate our solutions in both controlled environment and in the wild.
+
+%% Finally, we conclude that two MAC approaches can coexist fairly with our solutions.
+
+
+%% \textbf{Contributions:} This paper contributes the following:
+
+%% \begin{itemize}
+
+%% \item We developed an open LTE-U test platform and we conducted systematic study for coexistence between CSAT and CSMA. 
+
+%% \item We find serious deficiencies in the current LTE-U 
+%% and conducted extensive experiments to validate our solutions.
+
+%% \item We also conducted measurements on other coexistence related issues in both controlled environment and in the wild.
+
+%% \end{itemize} 
+

@@ -1,0 +1,69 @@
+\subsection{Related Work}
+
+Despite the potentially huge real-world impact of LTE-U,
+research studies examining Wi-Fi coexistence problems have been 
+limited. This is mainly due to the lack of a publicly available LTE-U system.
+The only result on a LTE-U running system is provided by Qualcomm,
+which implements LTE-U in a chipset~\cite{qualcommpresentation,qualcommiccw}.
+Qualcomm concludes that LTE-U is a better neighbor of Wi-Fi than Wi-Fi itself based on a set of controlled experiments.
+However, its LTE-U system which contains a proprietary CSAT algorithm is not publicly available for researchers to reproduce the results or conduct a more extensive study.
+On the other hand, Google~\cite{google}, Cablelabs~\cite{cablelabs} and NEC Lab~\cite{chai2016lte} raise several concerns on the coexistence problem 
+based on an emulated LTE-U signal from test equipments or simulation.
+The study presented in this paper extends existing results in a number of aspects.
+First, we base our study on a complete and publicly available LTE-U system.
+Results can be easily reproduced.
+Second, we examine several Wi-Fi routers and show that the impacts of LTE-U
+are different due to various sensing and rate adapatation algorithms. 
+Third, we conduct an extensive study on all the major coexistence issues.
+To our knowledge, this is the first study of CSAT and its properties. 
+Fourth, we provide solutions for discovered coexistence issues and validate 
+them through both controlled and in-the-wild experiments.
+
+Besides results discussed above,
+the problem of LTE in unlicensed band has also attracted simulation studies~\cite{simulation1,simulation2,simulation3}.
+These studies usually focus on a certain aspect,
+\textit{e.g.}, collision probability and delay~\cite{simulation1}.
+Moreover, there are also several solutions proposed for the coexistence problem beyond medium access protocols.
+For example,
+inter-network coordination~\cite{solution2},
+advanced physical layer technique~\cite{solution3},
+spectrum access based on mathematical sharing model~\cite{solution1},
+\textit{etc}.
+
+\subsection{Discussion}
+
+In the following, we discuss several 
+issues related to the coexistence problem between LTE-U and Wi-Fi that have not been addressed in the previous sections. 
+
+%% \textbf{Can CSMA solve the coexistence problem?}
+%% Applying carrier sensing to LTE-U can help to avoid unnecessary collisions with Wi-Fi.
+%% However, carrier sensing itself does not guarantee fair coexistence between LTE-U and Wi-Fi.
+%% A CSAT-like scheduling algorithm is still in need for fair channel sharing,
+%% unless the same parameter set of Wi-Fi (\textit{e.g.}, exponential back-offs, TXOP, \textit{etc.}) is applied in addition to carrier sensing.
+
+\textbf{Can LAA solve the coexistence problem?}
+The upcoming \textit{License Assisted Access} (LAA) will include listen-before-talk,
+therefore is promising to overcome the inefficiency problem of LTE-U.
+However, fairness will depend on the exact specification, and this remains to be confirmed in a separate study. 
+%However, as discussed above, listen-before-talk does not guarantee fair coexistence.
+%We do not know whether LAA will provide fair coexistence with Wi-Fi before the LAA specifications are finished.
+
+
+\textbf{LTE-U/LTE-U coexistence?} While this paper focuses on 
+LTE-U and Wi-Fi coexistence, we expect 
+multiple LTE-U base stations on the same 5GHz channel should LTE-U become
+mainstream. In such a case, LTE-U base stations  
+ will impact each other significantly. 
+As none of them performs listen-before-talk, 
+the actual degradation could be arbitrarily severe.
+%To mitigate the problem, multiple co-located LTE-U base staions should use non-overlapped 5GHz channels or synchronize their transmissions using out-of-band channels.
+
+\textbf{Is 5GHz popular?}
+According to ABI research, we have more than 10B wi-fi by early 2015
+in which more than 50\% of Wi-Fi chip shipment is dual-band, \textit{i.e.}, 5GHz capable~\cite{wifimarket1},
+and more than 18B chips will be shipped between 2015 to 2019~\cite{wifimarket2}.
+Given that by 2019 we will have 30B Wi-Fi and at least 1/3 of them (10B) will be potentially 5GHz capable,
+collocated LTE-U and Wi-Fi operating on the same 5GHz channel will be a common case that must be addressed.
+
+\textbf{What about 802.11ac?}
+802.11ac introduces two new channel width settings for Wi-Fi: 80MHz and 160MHz. While LTE-U operates on a 20MHz channel width, it is not clear what is the impact on a 80MHz or 160MHz channel. We have not used 802.11ac in our study, and this should be an important future work.

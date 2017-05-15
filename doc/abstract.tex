@@ -6,26 +6,27 @@ to various potential coexistence issues between LTE-U and Wi-Fi,
 mainly centered around energy sensing and rate adaptation. 
 In this paper, we present our experience in implementing 
 an open LTE-U platform and evaluating the impact 
-of LTE-U interference in existing Wi-Fi networks.
+of LTE-U interference on existing Wi-Fi networks.
 We find that various sensing and rate adaptation algorithms
-implemented in different Wi-Fi firmwires show 
-different level of LTE-U interference handling capabilities. 
-For a single link Wi-Fi with a LTE-U base station, 
-OpenWRT shows the best coexitence capability, while
-DD-WRT and some commercial routers show various
-ineffciency under different settings of LTE-U transmissions. 
+implemented in different Wi-Fi firmwares show 
+different levels of sensitivies to LTE-U interference. 
+For a single Wi-Fi link, 
+LTE-U interference has limited impact on OpenWRT routers, while
+DD-WRT and some commercial routers are very sensitive to 
+LTE-U interference with different LTE-U power, duty cycle and on time settings. 
 Qualcomm’s CSAT algorithm is currently
 the only algorithm proposed to adjust duty cycle for general
-coexistence, and it has been
+coexistence cases when there are multiple links, and it has been
 implemented in the first generation of LTE-U devices. We show
 that CSAT design principles are at odds with CSMA, regardless
 of parameter setting, and can cause severe unfairness. We
 propose a novel algorithm, which we call reactive adaptation, that
 significantly improves coexistence in several important scenarios.
-We further show that there are scenarios in which the main
-premise of LTE-U, not to sense the medium before transmitting,
-causes fundamental inefficiency that cannot be fully alleviated
-by any further protocol improvements. In order to evaluate our
+%We further show that there are scenarios in which the main
+%premise of LTE-U, not to sense the medium before transmitting,
+%causes fundamental inefficiency that cannot be fully alleviated
+%by any further protocol improvements. 
+In order to evaluate our
 proposals, we develop an open source implementation of LTE-U
 on a software defined radio platform and we use it to quantify our
 claims by measuring effect on real-world Wi-Fi deployments. We

@@ -1,5 +1,5 @@
 
-In this section, we give a brief overview of the LTE-U design, 
+In this section, we give a brief overview of the LTE-U, 
 introduce the coexistence issues and set the scene for the subsequent in-depth study of each of them. 
 
 \subsection{LTE-U Overview}
@@ -17,7 +17,7 @@ adjust the duty cycle accordingly. The exact duty cycle adaptation algorithm is 
 
 \begin{figure}[!ht]
  \centering
-    \includegraphics[width=0.5\textwidth]{./figures/motivation}
+    \includegraphics[width=2.8in]{./figures/motivation}
  \caption{LTE-U in a lab: Wi-Fi with no added APs (Solo), with interfering Wi-Fi AP, and with interfering LTE-U AP.}
   \label{fig:lteu_lab}
 \end{figure}
@@ -41,7 +41,9 @@ We observe similar effects in other experiments that we perform in public places
 
 There are several reasons why LTE-U severely affects Wi-Fi. The two issues widely discussed in existing literatures are around LTE-U's use of energy detection and Wi-Fi rate adaptation (c.f. \cite{google, cablelabs}). 
 
-In this paper we focus on the issue of the utilization-based duty cycle adaptation, which to the best of our knowledge hasn't been studied before. According to CSAT~\cite{lteuforum_csat}, LTE-U increases its duty cycle until the observed Wi-Fi's medium utilization reaches a threshold. The implicit assumption is that a backlogged Wi-Fi link will have high medium utilization. While this may be true in small test-beds, it doesn't hold in the real world where many neighbouring links can prevent a backlogged link from achieving high utilization. An LTE-U base-station may not observe all these links, and can wrongfully conclude that Wi-Fi is not backlogged because medium is idle, leading to duty cycle increases and eventual Wi-Fi starvation.
+In this paper we focus on the issue of the utilization-based duty cycle adaptation, which to the best of our knowledge hasn't been studied before. 
+According to CSAT~\cite{lteuforum_csat}, LTE-U increases its duty cycle until the observed Wi-Fi's medium utilization reaches a threshold. 
+The implicit assumption is that a backlogged Wi-Fi link will have high medium utilization. While this may be true in small test-beds, it doesn't hold in the real world where many neighbouring links can prevent a backlogged link from achieving high utilization. An LTE-U base-station may not observe all these links, and can wrongfully conclude that Wi-Fi is not backlogged because medium is idle, leading to duty cycle increases and eventual Wi-Fi starvation.
 
 
 %The first one is that LTE-U only detects Wi-Fi using energy detection, with a threshold of -62 dBm. Typical Wi-Fi noise floor is around -82 dBm so an LTE-U node can create as much as 20 dB of interference over the noise floor without realizing it, which is clearly detrimental for Wi-Fi. The second issue is the effect of the collisions induced by LTE-U on Wi-Fi's rate adaptation. Without listen-before-talk (LBT), LTE-U transmissions will inevitably collide with progressing Wi-Fi frames. Given that collisions are rare in Wi-Fi networks with LBT, most rate adaptation algorithms will misinterpret such frame losses as bad channel conditions, resulting in Wi-Fi reducing its own transmission rate and throttling its own throughput. This phenomenon will affect a large number of already deployed Wi-Fi access points. To mitigate this, we propose a solution based on CTS-to-self mechanism that sends the correct signal back to Wi-Fi and mitigates these effects.

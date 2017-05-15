@@ -19,7 +19,7 @@ than that of unsaturated link.
 
 \begin{figure}[!ht]
  \centering
-    \includegraphics[width=0.5\textwidth]{./figures/cts2self_power}
+    \includegraphics[width=2.6in]{./figures/cts2self_power}
  \caption{CTS-to-self.}
   \label{fig:cts2self_power}
 \end{figure}
@@ -50,12 +50,6 @@ i.e., Wi-Fi preamble and CTS frame etc.
 
 The key observation we make from the previous experiments is that it is difficult to set a common medium utilization threshold for all scenarios. However, we also observe that if the medium is not fully saturated, the medium utilization of Wi-Fi keeps increasing as the LTE-U duty cycle increases (as shown in the examples in Figure~\ref{fig:csat_mu_good}). Once the medium is saturated, this is not true any more (as shown in the examples in Figure~\ref{fig:csat_mu_bad}). 
 
-$\Delta{MU}$ should be a function of MU.
-
-\begin{equation}
-\Delta{MU}=\alpha * MU
-\end{equation}
-
 
 
 \begin{figure}[tbp]
@@ -68,7 +62,7 @@ $\Delta{MU}$ should be a function of MU.
 
         \State $\Delta_{MU} = \overline{MU}(t) - \overline{MU}(t-T)$
         \State $\Delta_{on} = {ON}_{mss}(t) - {ON}_{mss}(t-T)$
-        \State $\beta = curmu * mu\_alpha$;
+        \State $\beta = curmu * mu_{\alpha}$;
  
         \State $T_{UP} = \min ( T_{ON}(n) + \Delta T_{UP}, T^{max}_{ON})$;
         \State $T_{DOWN} = \min ( T_{ON}(n) - \Delta T_{DN}, T^{min}_{ON})$;
@@ -121,12 +115,12 @@ We deal with a decrease in the duty cycle in a similar manner (lines \ref{rat:dn
 If the duty cycle hasn't previously changed (because it has already reached the limit), then in the next step we change the duty cycle the same way the utilization has changed. 
 If the utilization has gone up (lines \ref{rat:eqs}-\ref{rat:eqd}), this implies that there may be more scope for traffic increase and we increase the duty cycle. Otherwise we conservatively decrease it (lines \ref{rat:eqd}-\ref{rat:eqe}).
 
-The threshold $\beta$ is calculated from the last medium utilization $MU(n)$. We determine the multiplicative factor $mu\_alpha$ by experimenting in various networks. We find that the best value is $mu\_alpha = 0.15$.
+The threshold $\beta$ is calculated from the last medium utilization $MU(n)$. We determine the multiplicative factor $mu_{\alpha}$ by experimenting in various networks. We find that the best value is $mu_{\alpha} = 0.15$.
 
 We illustrate the effects of RAT on the hidden node topology shown in Figure~\ref{fig:csat_hidden}. 
 We plot the throughput achieved by AP 1 in Figure~\ref{fig:csat_mu_bad}, right. 
 We see that in this example the Wi-Fi AP 1 achieves much higher throughput when LTE-U node runs RAT, and is never starved. 
-We further quantify the benefits of RAT in real-world scenarios in Section~\ref{sec:wild}.
+We further quantify the benefits of RAT in real-world scenarios in Section~\ref{sec:eval}.
 
 As a conclusion, we see that LTE-U duty-cycle adaptation should not be based on the average medium utilization, as the metric is too simplistic. Instead, one should adapt the duty-cycle based on the effects its changes have on the network traffic, as proposed in RAT.
  

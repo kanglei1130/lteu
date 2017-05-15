@@ -1,8 +1,17 @@
 
 
+In this section, we measure the impact of LTE-U interference
+on a single Wi-Fi link. 
+We change the power, duty cycle, on time
+and number of filled resource blocks of LTE-U and 
+examine the Wi-Fi throughput and latency. 
+The measurement is conducted during night when there
+is limited external interference from office 
+Wi-Fi networks. 
 
 
-\textbf{Setup}. There is a Wi-Fi AP and client pair. The received Wi-Fi power at the 
+\textbf{Setup}. There is a single Wi-FI link, i.e., a  Wi-Fi AP and a Wi-Fi client. 
+The received Wi-Fi power at the 
 client is -45dBm, if the maximum transmission power is used. 
 The LTE-U base station is put at the middle of the Wi-Fi AP
 and the client, so that both AP and client can receive the same level of interference
@@ -52,14 +61,14 @@ and doesn't create any interference to WiFi (it also ceases to transmit referenc
 
 \begin{figure}[t] \centering 
     \begin{subfigure}[b]{\linewidth} \centering
-     \includegraphics[width=3.0in, angle=0]{./figures/impact_power_tplink} 
+     \includegraphics[width=2.5in, angle=0]{./figures/impact_power_tplink} 
          \vspace{-0.0cm}
          \caption{LTE-U interference on TP-Link WR940N, and we observe similar trend for Buffalo N900 installed with DD-WRT.}         
         \label{impact_power:a}
     \end{subfigure} %
 
     \begin{subfigure}[b]{\linewidth}  \centering 
-     \includegraphics[width=3.0in, angle=0]{./figures/impact_power_openwrt}  
+     \includegraphics[width=2.5in, angle=0]{./figures/impact_power_openwrt}  
         \vspace{-0.0cm}
         \caption{LTE-U interference on NetGear N600 WNDR3700v4 installed with OpenWRT.}
         \label{impact_power:b}    
@@ -72,14 +81,14 @@ and doesn't create any interference to WiFi (it also ceases to transmit referenc
 
 \begin{figure}[t] \centering
     \begin{subfigure}[b]{\linewidth} \centering
-     \includegraphics[width=3.0in, angle=0]{./figures/impact_ratecdf_tplink} 
+     \includegraphics[width=2.5in, angle=0]{./figures/impact_ratecdf_tplink} 
          \vspace{-0.0cm}
          \caption{Wi-Fi PHY rates used by commerical router under 50\% duty cycle of LTE-U.}         
         \label{impact_cdfrate:a}
     \end{subfigure} %
 
     \begin{subfigure}[b]{\linewidth} \centering 
-     \includegraphics[width=3.0in, angle=0]{./figures/impact_ratecdf_openwrt}  
+     \includegraphics[width=2.5in, angle=0]{./figures/impact_ratecdf_openwrt}  
         \vspace{-0.0cm}
         \caption{Wi-Fi PHY rates used by OpenWRT under 50\% duty cycle of LTE-U.}
         \label{impact_cdfrate:b}    
@@ -219,14 +228,14 @@ rate adaptation algorithm to reduce the transmission rate.
 
 \begin{figure}[t] \centering
     \begin{subfigure}[b]{\linewidth} \centering
-     \includegraphics[width=3.0in, angle=0]{./figures/impact_ontime_tplink_above} 
+     \includegraphics[width=2.5in, angle=0]{./figures/impact_ontime_tplink_above} 
          \vspace{-0.0cm}
          \caption{Received LTE-U power is above -62dBm.}         
         \label{impact_ontime:a}
     \end{subfigure} %
 
     \begin{subfigure}[b]{\linewidth} \centering 
-     \includegraphics[width=3.0in, angle=0]{./figures/impact_ontime_tplink_below}  
+     \includegraphics[width=2.5in, angle=0]{./figures/impact_ontime_tplink_below}  
         \vspace{-0.0cm}
         \caption{Received LTE-U power is below -62dBm.}
         \label{impact_ontime:b}    
@@ -303,14 +312,14 @@ Wi-Fi transmissions.
 
 \begin{figure}[t] \centering
     \begin{subfigure}[b]{\linewidth} \centering
-     \includegraphics[width=3.0in, angle=0]{./figures/impact_nrbs_tplink} 
+     \includegraphics[width=2.5in, angle=0]{./figures/impact_nrbs_tplink} 
          \vspace{-0.0cm}
          \caption{The impact of RBs on commercial router.}         
         \label{impact_nrbs:a}
     \end{subfigure} %
 
     \begin{subfigure}[b]{\linewidth} \centering 
-     \includegraphics[width=3.0in, angle=0]{./figures/impact_nrbs_openwrt}  
+     \includegraphics[width=2.5in, angle=0]{./figures/impact_nrbs_openwrt}  
         \vspace{-0.0cm}
         \caption{The impact of RBs on OpenWRT router.}
         \label{impact_nrbs:b}    
@@ -349,7 +358,7 @@ the tail latency.
 
 \begin{figure}[!ht]
  \centering
-    \includegraphics[width=3.0in]{./figures/impact_latency_ontime}
+    \includegraphics[width=2.5in]{./figures/impact_latency_ontime}
  \caption{Latency under different ``on'' period with 50\% dutcy cycle.}
   \label{fig:impact_latency}
 \end{figure}

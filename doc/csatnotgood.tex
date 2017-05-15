@@ -78,12 +78,27 @@ CSAT will keep increasing its duty cycle until Wi-Fi’s MU hits a predefined th
 If a Wi-Fi is fully backlogged, i.e., always having packets to send, the medium should be considered fully utilized and the threshold should always be smaller than this MU so that LTE-U will stop increasing its duty cycle. 
 In this section {\em we want to verify this hypothesis, as well as understand how the threshold should be set to achieve equal medium access opportunities for LTE-U and Wi-Fi}.
 
-\begin{figure}[htb!]
- \centering
-    \includegraphics[width=0.35\textwidth]{./figures/csat_mu_80211bg}
- \caption{Medium utilization for 802.11 a/g link.}
-  \label{fig:mu_examples_ag}
+\begin{figure}[t] \centering
+    \begin{subfigure}[b]{\linewidth} \centering
+     \includegraphics[width=2.5in, angle=0]{./figures/csat_mu_80211bg} 
+         \vspace{-0.0cm}
+         \caption{Medium Utilization for 802.11 a/g link.}         
+        \label{fig:mu_examples_ag}
+    \end{subfigure} %
+
+    \begin{subfigure}[b]{\linewidth} \centering 
+     \includegraphics[width=2.5in, angle=0]{./figures/csat_mu_80211n}  
+        \vspace{-0.0cm}
+        \caption{Medium Utilization for 802.11n link.}
+        \label{fig:mu_examples_n}    
+    \end{subfigure} 
+\caption{Different Medium Utilizations of single Wi-Fi link.}
+\label{mu_examples}
+\vspace{-0.2cm}
 \end{figure}
+
+
+
 
 It is well understood that Wi-Fi's medium utilization depends on a lot of factors, such as PHY data rate, level of packet aggregation, etc. In Figure~\ref{fig:mu_examples_ag}, we plot the MU distributions (\ref{eq:mua}) of a fully backlogged TCP and UDP flow. 
 We compare the MU distribution under two different LTE-U duty cycles, 0\% and 50\%, 
@@ -99,13 +114,6 @@ the MU threshold $m$ has to be under 0.8 and 0.6, respectively.
 
 
 
-\begin{figure}[htb!]
- \centering
-    \includegraphics[width=0.35\textwidth]{./figures/csat_mu_80211n}
- \caption{Medium utilization for 802.11n link.}
-  \label{fig:mu_examples_n}
-\end{figure}
-
 
 \subsection{CSAT and Applications}
 
@@ -120,11 +128,11 @@ Furthermore, in the UDP and Youtube case, the medium gets saturated and the medi
 
 \begin{figure*}[htb!]
  \centering
-    \includegraphics[width=0.32\textwidth]{./figures/csat_mu_udp8mbps}
+    \includegraphics[width=0.3\textwidth]{./figures/csat_mu_udp8mbps}
 %    \hspace{-6pt}    
-    \includegraphics[width=0.32\textwidth]{./figures/youtube_80211bg}
+    \includegraphics[width=0.3\textwidth]{./figures/youtube_80211bg}
 %    \hspace{-18pt}    
-    \includegraphics[width=0.32\textwidth]{./figures/skype_80211bg}
+    \includegraphics[width=0.3\textwidth]{./figures/skype_80211bg}
 %    \hspace{-36pt}    
 %    \includegraphics[width=0.98\textwidth]{./figures/good.png}
  \caption{Medium utilization: Good case (left - UDP, 8Mbps; center - Youtube, 4 Mbps; right - Skype, 300 kbps) }
@@ -135,9 +143,9 @@ Furthermore, in the UDP and Youtube case, the medium gets saturated and the medi
 
 \begin{figure*}[htb!]
  \centering
-    \includegraphics[width=0.32\textwidth]{./figures/bilibili_80211bg}
-    \includegraphics[width=0.32\textwidth]{./figures/hidden_mu_applications}
-    \includegraphics[width=0.32\textwidth]{./figures/hiddencase.pdf}
+    \includegraphics[width=0.3\textwidth]{./figures/bilibili_80211bg}
+    \includegraphics[width=0.3\textwidth]{./figures/hidden_mu_applications}
+    \includegraphics[width=0.3\textwidth]{./figures/hiddencase.pdf}
  \caption{Medium utilization - Bad case: Bilibili traffic, MU in the hidden node case, Wi-Fi throughput for the hidden node case}
   \label{fig:csat_mu_bad}
 \vspace{-12pt}
@@ -160,7 +168,7 @@ We further inspect bilibili traffic and find that it is very bursty. Its bursts 
 \begin{figure}[htb!]
 \vspace{-12pt}
  \centering
-    \includegraphics[width=0.44\textwidth]{./figures/topology.pdf}
+    \includegraphics[width=2.4in]{./figures/topology.pdf}
 \vspace{-24pt}
  \caption{Topology with a hidden node.}
   \label{fig:csat_hidden}

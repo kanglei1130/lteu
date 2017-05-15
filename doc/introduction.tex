@@ -13,12 +13,13 @@ Further, LTE-U's medium sharing strategy is unilateral.
 To offer fair sharing, LTE-U reads the medium when it is not transmitting and adjusts its duty cycle based on a medium utilization (MU) estimation.
 The basic idea is that, if medium utilization is low, Wi-Fi load must be small and LTE-U can increase its share of medium use by increasing duty cycle, and vice versa. 
 
-The coexistence between Wi-Fi and LTE-U is an academically interesting problem with severe practical implications.
-Fundamentally, this is a question about whether a CSMA-type protocol can effectively coexist with a TDMA protocol without LBT.
-More specifically, it is also a question of whether duty cycle adaptation based on inferred medium utilization values can replace per-packet LBT and still yield to a stable and fair sharing of medium.
-Answering these questions is fundamental to our understanding of the deep implications of running LTE-U on the same channel as Wi-Fi.
+%The coexistence between Wi-Fi and LTE-U is an academically interesting problem with severe practical implications.
+%Fundamentally, this is a question about whether a CSMA-type protocol can effectively coexist with a TDMA protocol without LBT.
+%More specifically, it is also a question of whether duty cycle adaptation based on inferred medium utilization values can replace per-packet LBT and still yield to a stable and fair sharing of medium.
+%Answering these questions is fundamental to our understanding of the deep implications of running LTE-U on the same channel as Wi-Fi.
 
-This problem also has severe practical implications because LTE-U is now real and imminent, not just an academic exercise.
+The coexistene between Wi-Fi and LTE-U has severe practical implications because LTE-U is now real and imminent.
+%not just an academic exercise.
 LTE-U specification V1.3~\cite{lteuforum_lteu} has been approved and published by the industrial LTE-U Forum in October 2015.
 It has been included in the newest generation of Qualcomm cellular chipsets (Snapdragon X12) and their latest small cell reference designs (FSM9955)~\cite{x12}. 
 Using this chipset, Samsung's next flagship phone, Galaxy S7, is now ``LTE-U capable''~\cite{s7}.
@@ -28,15 +29,49 @@ Several interested parties are planning real-world trials in an effort to persua
 The potential fallout on tens of millions of 5GHz Wi-Fi devices will be huge, 
 if coexistence effects are not properly understood before mass scale deployment. 
 
-Duty-cycle adaptation algorithm is central for LTE and Wi-Fi coexistence, yet there is only a single algorithm, CSAT~\cite{lteuforum_csat}, proposed for LTE-U to derive a fair medium share.
-Surprisingly, CSAT has so far been evaluated only in a very specific, dense topology where all nodes sense each other, and with a synthetic workloads~\cite{qualcommpresentation}. In this paper we show that CSAT doesn't work well in a wide range of real-world situations, including an omnipresent hidden-terminal topology. 
 
-To alleviate these problems we propose a novel duty-cycle adaptation algorithm for LTE-U called {\em reactive adaptation}. The key observation is that a medium utilization observed by a single node in a busy network does not have to be high, as we show in Section~\ref{sec:csat}. Instead, we base our duty cycle adaptation on a relative change of the medium utilization observed as a reaction to changes in the duty cycle. 
+
+In this paper, we measure the impact of LTE-U interference on existing Wi-Fi networks.
+As a start, we measure the throughput and latency of single link Wi-Fi when varing
+the duty cycle, duty cycle, on time, the number of filled resource blocks 
+of LTE-U frames. 
+We conduct the same measurement on different Wi-Fi routers, 
+i.e., OpenWRT, DD-WRT and commercial routers. 
+Our extensive measurements show that OpenWRT is resistant to LTE-U
+interference, while DD-WRT and some commercial routers
+show different levels of vulnerabilities. 
+Our observations indicate: 1. LTE-U should be better designed
+so that most deployed Wi-Fi routers can be less affected; 
+2. The sensing and rate adaptation algorithm of Wi-Fi routers
+can be well defined and carefully implemented to 
+be resistant to external interference. 
+For genenral coexistence cases when there are multiple Wi-Fi links, 
+duty-cycle adaptation algorithm is central for LTE and Wi-Fi coexistence.
+However, there is only a single coarsely defined algorithm, 
+CSAT~\cite{lteuforum_csat}, proposed for LTE-U to derive a fair medium share.
+Surprisingly, CSAT has so far been evaluated only in a very specific, 
+complex topology and with a synthetic workloads~\cite{qualcommpresentation}. 
+In our measurement, we show that CSAT doesn't work well in a wide range of real-world situations, including an omnipresent hidden-terminal topology. 
+
+
+Inspired by the coexistence mechanims (i.e., CTS-to-self) 
+among various versions of Wi-Fi networks, 
+i.e., 802.11a/b/g/n, 
+we implement CTS-to-self in software defined radio
+and demonstrate LTE-U can coexsit with various
+Wi-Fi networks with the extra header overhead. 
+We also propose a novel duty-cycle adaptation algorithm called {\em reactive adaptation}
+for LTE-U to coexist with public Wi-Fi networks.
+The key observation is that a medium utilization observed 
+by a single node in a saturated network does not have to be high, 
+as we show in Section~\ref{sec:csat}. 
+Instead, we base our duty cycle adaptation on a relative change of 
+the medium utilization observed as a reaction to changes in the duty cycle. 
 
 In order to verify our findings, we first built an open source LTE-U prototype platform~\cite{OpenLTEU} and a reference implementation of the coexistence algorithms, including our own reactive adaptation algorithm. 
 Then, we use the platform to run a series of LTE-U coexistence tests on real-world Wi-Fi deployments. 
 We show that with the default LTE-U implementation, Wi-Fi almost never gets its fair share, in contrast to previous studies~\cite{qualcommpresentation} that focused on small lab deployments. 
-We also show that previously suggested remedies~\cite{google, cablelabs} -- improved rate adaptation and preamble sensing -- only slightly improve Wi-Fi's performance. 
+%We also show that previously suggested remedies~\cite{google, cablelabs} -- improved rate adaptation and preamble sensing -- only slightly improve Wi-Fi's performance. 
 We further show that in most cases reactive adaptation alleviates the coexistence issues. 
 
 %However, we also observe that in a few cases LTE-U exhibits a {\em fundamental efficiency problem} that we discuss in Section~\ref{sec:ineff}.
@@ -46,51 +81,35 @@ We further show that in most cases reactive adaptation alleviates the coexistenc
 
 In summary, this paper makes the following contributions:
 \begin{itemize}
-\item We developed an open LTE-U test platform~\cite{OpenLTEU} and conduct systematic study for coexistence between LTE-U and Wi-Fi. 
+\item We developed an open LTE-U test platform~\cite{OpenLTEU} 
+  and conduct systematic study for 
+  the impact of LTE-U interference on Wi-Fi networks.
+  Our LTE-U platform can run on multiple hardware platform such as 
+    Sora \cite{sora} and BladeRF \cite{bladeRF}. 
+
+\item We conduct the measurement on different Wi-Fi routers, 
+  i.e., OpenWRT, DD-WRT and commercial routers,
+  and show that different sensing and rate adaptation algorithms have 
+    significant differences of sensitivities to LTE-U interference.
+
 \item We analyze one of the critical coexistence issues of duty cycle adaptation and its impact on Wi-Fi performance. We show deficiencies of the currently proposed mechanism and we present a novel algorithm that significantly improves performance in many cases. 
-\item We further show that in some cases LTE-U is fundamentally less efficient in spectrum use due to the lack of per-transmission LBT.  
-\item We verify our findings in both controlled environment and in the wild real world.
+We verify our findings in both controlled environment and in the wild real world.
+
 \end{itemize} 
-Wireless coexistence in unlicensed spectrum has always been an important problem.
-However, it has now become critical with the advent of new technologies that can potentially threaten the survival of one of the most successful wireless technologies so far -- Wi-Fi. 
+
+
+%\item We further show that in some cases LTE-U is fundamentally less efficient in spectrum use due to the lack of per-transmission LBT.  
+%Wireless coexistence in unlicensed spectrum has always been an important problem.
+%However, it has now become critical with the advent of new technologies that can potentially threaten the survival of one of the most successful wireless technologies so far -- Wi-Fi. 
 %We hope that our study is one of the first step towards understanding the notion of fairness and building a propoper coexistence framework between CSMA and TDMA-based technologies in valuable unlicensed spectrum. 
 
-%In next section we discuss the basics of LTE-U and we introduce the coexistence problem. In Section~\ref{sec:csat} we explain CSAT, show its inefficiencies, and present our reactive adaptation algorithm. In Section~\ref{sec:ineff} we discuss the remaining fundamental coexistence issues due to lack of sensing. In Section~\ref{sec:eval} we present our real-world coexistence evaluation, followed by related work, discussions and conclusions.
-
-
-
-
-%% This new MAC raises an interesting research question:
-%% does it (duty-cycling with CSAT) coexist fairly with CSMA?
-
-%% We developed a platform for experimental study.
-
-%% We studied proposed CSAT algorithm.
-%% We point out coexistence issues that should be addressed
-%% (1) Accurate Wi-Fi load estimation,
-%% (2) Fair share estimation.
-%% We provide solutions for these issues.
-
-%% We also study coexistence issues that were raised before 
-%% (1) lacking listen-before-talk,
-%% (2) sensitivity between different PHY.
-%% We found these issues are addressable with straightforward solutions.
-
-%% We validate our solutions in both controlled environment and in the wild.
-
-%% Finally, we conclude that two MAC approaches can coexist fairly with our solutions.
-
-
-%% \textbf{Contributions:} This paper contributes the following:
-
-%% \begin{itemize}
-
-%% \item We developed an open LTE-U test platform and we conducted systematic study for coexistence between CSAT and CSMA. 
-
-%% \item We find serious deficiencies in the current LTE-U 
-%% and conducted extensive experiments to validate our solutions.
-
-%% \item We also conducted measurements on other coexistence related issues in both controlled environment and in the wild.
-
-%% \end{itemize} 
+In next section we discuss the basics of LTE-U and we introduce the coexistence problem. 
+In Section~\ref{sec:platform}, we present the system component
+and implementation details of our Open LTE-U platform.
+In Section~\ref{sec:singlelink}, we measure the impact of LTE-U
+interference on single Wi-Fi links.
+In Section~\ref{sec:csat}, we explain CSAT, show its inefficiencies.
+We present our reactive adaptation algorithm in Section~\ref{sec:solution}. 
+%In Section~\ref{sec:ineff} we discuss the remaining fundamental coexistence issues due to lack of sensing. 
+In Section~\ref{sec:eval}, we present our real-world coexistence evaluation, followed by related work, discussions and conclusions.
 

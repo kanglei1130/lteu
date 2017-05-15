@@ -15,15 +15,15 @@ We vary the sensing threshold between -62 dBm and -82 dBm to evaluate the energy
 
 
 
-
-
 %\subsection{Coexistence in the Wild}
-\label{sec:wild}
+
 
 We consider two deployment scenarios: a university lab and a cafeteria, show in Figure~\ref{fig:wild_layout}. The lab setup is a typical university research lab with several student and faculty offices. We conducted experiments during working hours when many employees were using their laptops and Wi-Fi connections. We plot the CDF of the Wi-Fi medium utilization (\ref{eq:mu}) for the busiest Wi-Fi AP as well as the aggregate utilization in Figure~\ref{fig:wild_lab}, left. 
 The median utilization is around 30\%, which corresponds\footnote{This is only approximate as the metrics are not exactly the same} to a typical medium utilization of a large number of Wi-Fi APs reported in~\cite{meraki_sigcomm15}.
 
-The cafeteria is a student area that includes a cafe, a restaurant, a hotel and an open study space. We conduct experiments during busy hours when many people were using facilities. We plot the CDF of the Wi-Fi medium utilization (\ref{eq:mu}) for the busiest Wi-Fi AP as well as the aggregate utilization across all APs, Figure~\ref{fig:wild_cafe}, left. We see that the medium utilization is slightly lower than in the lab case. 
+The cafeteria is a student area that includes a cafe, a restaurant, a hotel and an open study space. We conduct experiments during busy hours when many people were using facilities. 
+
+%We plot the CDF of the Wi-Fi medium utilization (\ref{eq:mu}) for the busiest Wi-Fi AP as well as the aggregate utilization across all APs, Figure~\ref{fig:wild_cafe}, left. We see that the medium utilization is slightly lower than in the lab case. 
 
 \begin{figure}[h!]
 \vspace{-12pt}
@@ -45,7 +45,8 @@ In the second type of experiments we download three web pages (www.google.com, w
 We make a 1 second gap between the consecutive web request. 
 The goal of this scenario is to illustrate how well different protocols adapt to a non-constant traffic. 
 We record the completion times and plot the CDF across all locations of the client and the AP. 
-The results are depicted in Figure~\ref{fig:wild_lab} and Figure~\ref{fig:wild_cafe}.
+The results are depicted in Figure~\ref{fig:wild_lab}. 
+% and Figure~\ref{fig:wild_cafe}.
 
 For each type of traffic we run five different experiments. 
 First, we record the Wi-Fi traffic on the measured link without any added interference (red line, Solo).
@@ -74,10 +75,15 @@ Using a different adaptation mechanism RAT is able to substantially improves the
 We also see that the throughput achieved by the measured Wi-Fi link is the same in presence of the other Wi-Fi node as it is in presence of an LTE-U node with RAT. 
 %According to our definition of fairness (Section~\ref{sec:fairness}), this means that in this example LTE-U with RAT is fair to Wi-Fi. 
 
-In Figure~\ref{fig:wild_lab}, right, we plot the CDF of the page download times. Here we see that the change in the energy detection threshold does not substantially improve the page download time. This is because the CSAT cannot track very well the change in the traffic and gets overly aggressive (similar to the Bilibili scenario, discussed in Section~\ref{sec:csat}). On the other hand RAT is able to achieve fairness with the measured Wi-Fi link. 
-We also note that the RAT (blue) and Wi-Fi (green) lines do not coincide because we couldn't reproduce the exact same wireless environment although we walked a similar path. Nevertheless, the two figures are very similar.
+In Figure~\ref{fig:wild_lab}, right, we plot the CDF of the page download times. Here we see that the change in the energy detection threshold does not substantially improve the page download time. 
+This is because the CSAT cannot track very well the change in the traffic and gets overly aggressive (similar to the Bilibili scenario, discussed in Section~\ref{sec:csat}). On the other hand RAT is able to achieve fairness with the measured Wi-Fi link. 
+We also note that the RAT (blue) and Wi-Fi (green) lines do not coincide because we couldn't reproduce the exact same wireless environment although we walked a similar path. 
+Nevertheless, the two figures are very similar.
+We repeat the same measurement in the cafeteria scenario and 
+the results are similar to the lab case. 
+As a conclusion, we observe that CSAT almost always starved Wi-Fi networks and that RAT significantly improved coexistence. 
 
-
+\nop{
 \begin{figure*}[htb!]
  \centering
     \includegraphics[width=0.31\textwidth]{./figures/union_mu}
@@ -86,10 +92,12 @@ We also note that the RAT (blue) and Wi-Fi (green) lines do not coincide because
  \caption{Cafeteria: Estimated Wi-Fi utilization before the experiment (left), throughput of the measured Wi-Fi link for fully saturated UDP traffic (center) and for HTTP download (right).}
   \label{fig:wild_cafe}
 \end{figure*}
+}
 
+\nop{
 In Figure~\ref{fig:wild_cafe}, we plot the same results for the cafeteria scenario. The conclusions are the same. LTE-U with CSAT highly affects the throughput of the measured Wi-Fi link and is not fair, regardless of the sensing threshold. In the same environment LTE-U with RAT allows the measured Wi-Fi to achieve much higher rate, comparable to the Wi-Fi case, and can be considered fair to Wi-Fi. 
 As a conclusion, we observe that CSAT almost always starved Wi-Fi networks and that RAT significantly improved coexistence. 
-
+}
 %We also note that in all cases RAT is very close to Wi-Fi, and that we haven't observed much of the inefficiencies discussed in Section~\ref{sec:ineff}, because we used fully saturated LTE-U traffic in all our experiments. 
 
 

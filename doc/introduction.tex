@@ -32,41 +32,41 @@ if coexistence effects are not properly understood before mass scale deployment.
 
 
 In this paper, we measure the impact of LTE-U interference on existing Wi-Fi networks.
-As a start, we measure the throughput and latency of single link Wi-Fi when varing
-the duty cycle, duty cycle, on time, the number of filled resource blocks 
+As a start, we measure the throughput and latency of single Wi-Fi like when varying
+the duty cycle, duty cycle, ON period, the number of filled resource blocks 
 of LTE-U frames. 
-We conduct the same measurement on different Wi-Fi routers, 
+We repeat same measurements on different Wi-Fi routers, 
 i.e., OpenWRT, DD-WRT and commercial routers. 
 Our extensive measurements show that OpenWRT is resistant to LTE-U
 interference, while DD-WRT and some commercial routers
 show different levels of vulnerabilities. 
 Our observations indicate: 1. LTE-U should be better designed
-so that most deployed Wi-Fi routers can be less affected; 
+so that publicly deployed Wi-Fi routers can be less affected; 
 2. The sensing and rate adaptation algorithm of Wi-Fi routers
-can be well defined and carefully implemented to 
+can and should be well defined and carefully implemented to 
 be resistant to external interference. 
-For genenral coexistence cases when there are multiple Wi-Fi links, 
+
+
+For general coexistence cases when there are multiple Wi-Fi links, 
 duty-cycle adaptation algorithm is central for LTE and Wi-Fi coexistence.
 However, there is only a single coarsely defined algorithm, 
 CSAT~\cite{lteuforum_csat}, proposed for LTE-U to derive a fair medium share.
 Surprisingly, CSAT has so far been evaluated only in a very specific, 
-complex topology and with a synthetic workloads~\cite{qualcommpresentation}. 
+simple topology and with a synthetic workloads~\cite{qualcommpresentation}. 
 In our measurement, we show that CSAT doesn't work well in a wide range of real-world situations, including an omnipresent hidden-terminal topology. 
-
-
-Inspired by the coexistence mechanims (i.e., CTS-to-self) 
+Inspired by the coexistence mechanism CTS-to-self 
 among various versions of Wi-Fi networks, 
 i.e., 802.11a/b/g/n, 
 we implement CTS-to-self in software defined radio
-and demonstrate LTE-U can coexsit with various
-Wi-Fi networks with the extra header overhead. 
-We also propose a novel duty-cycle adaptation algorithm called {\em reactive adaptation}
+and demonstrate LTE-U can coexist with various
+Wi-Fi networks with the extra packet header overhead. 
+We also propose a novel duty-cycle 
+adaptation algorithm called {\em reactive adaptation}
 for LTE-U to coexist with public Wi-Fi networks.
-The key observation is that a medium utilization observed 
-by a single node in a saturated network does not have to be high, 
-as we show in Section~\ref{sec:csat}. 
-Instead, we base our duty cycle adaptation on a relative change of 
-the medium utilization observed as a reaction to changes in the duty cycle. 
+The basic idea is to adapt duty cycle based on a relative change of 
+the medium utilization instead of the absolute medium utilization
+used in CSAT. 
+
 
 In order to verify our findings, we first built an open source LTE-U prototype platform~\cite{OpenLTEU} and a reference implementation of the coexistence algorithms, including our own reactive adaptation algorithm. 
 Then, we use the platform to run a series of LTE-U coexistence tests on real-world Wi-Fi deployments. 
@@ -90,7 +90,7 @@ In summary, this paper makes the following contributions:
 \item We conduct the measurement on different Wi-Fi routers, 
   i.e., OpenWRT, DD-WRT and commercial routers,
   and show that different sensing and rate adaptation algorithms have 
-    significant differences of sensitivities to LTE-U interference.
+    significantly different sensitivities to LTE-U interference.
 
 \item We analyze one of the critical coexistence issues of duty cycle adaptation and its impact on Wi-Fi performance. We show deficiencies of the currently proposed mechanism and we present a novel algorithm that significantly improves performance in many cases. 
 We verify our findings in both controlled environment and in the wild real world.

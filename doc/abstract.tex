@@ -9,29 +9,31 @@ an open LTE-U platform and evaluating the impact
 of LTE-U interference on existing Wi-Fi networks.
 We find that various sensing and rate adaptation algorithms
 implemented in different Wi-Fi firmwares show 
-different levels of sensitivies to LTE-U interference. 
+various sensitivities to LTE-U interference. 
 For a single Wi-Fi link, 
 LTE-U interference has limited impact on OpenWRT routers, while
 DD-WRT and some commercial routers are very sensitive to 
-LTE-U interference with different LTE-U power, duty cycle and on time settings. 
+LTE-U interference under different LTE-U settings. 
 Qualcomm’s CSAT algorithm is currently
 the only algorithm proposed to adjust duty cycle for general
-coexistence cases when there are multiple links, and it has been
+coexistence scenarios when there are multiple links, and it has been
 implemented in the first generation of LTE-U devices. We show
 that CSAT design principles are at odds with CSMA, regardless
 of parameter setting, and can cause severe unfairness. We
 propose a novel algorithm, which we call reactive adaptation, that
 significantly improves coexistence in several important scenarios.
-%We further show that there are scenarios in which the main
-%premise of LTE-U, not to sense the medium before transmitting,
-%causes fundamental inefficiency that cannot be fully alleviated
-%by any further protocol improvements. 
 In order to evaluate our
 proposals, we develop an open source implementation of LTE-U
 on a software defined radio platform and we use it to quantify our
 claims by measuring effect on real-world Wi-Fi deployments. We
 released our LTE-U system to the public to assist further studies.
 
+
+
+%We further show that there are scenarios in which the main
+%premise of LTE-U, not to sense the medium before transmitting,
+%causes fundamental inefficiency that cannot be fully alleviated
+%by any further protocol improvements. 
 
 %In this paper, we focus on a novel aspect of the coexistence problem,
 %which is the one of the fair medium access between CSMA and

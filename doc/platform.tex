@@ -6,8 +6,7 @@ i.e., Sora~\cite{sora}, operating at 5 GHz and bladeRF~\cite{bladeRF}, operating
 Our LTE-U implementation consists of a LTE transmitter, a Wi-Fi sniffer and a controller.
 The architecture is depicted in Figure~\ref{fig:platform}.
 The LTE transmitter PHY is implemented in Ziria~\cite{stewart2015ziria} according to Release 8 specification of LTE, and tested using commercial LTE dongles. 
-Ziria is a customzied programming language designed
-to make writing PHY layer code simpler.  
+Ziria is a domain-specific programming language for efficient PHY layer implementation.  
 We have a customized translator that 
 can translate Ziria code into C code.
 The MAC layer of the LTE-U module is written in C. 
